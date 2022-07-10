@@ -1,0 +1,18 @@
+<%= render '/layouts/nav' %>
+
+<div class="row">
+ <%@friday_meet.each do |team|%>
+<div class="col-md-5 col-md-offset-1">
+<div class="panel panel-default">
+  <p style="color:blue;">Restaurant_name<p/><p><%=team.name%></p>
+  <p style="color:blue;">Notices Messaage<p/><p>Rest <%=team.restaurant_name%></p>
+  <p style="color:blue;">Team Leadar<p/><p><%=team.id%></p>    
+  <p style="color:blue;">Team Employee<p/>   
+    <%team.employee_ids.each do |employee|%>
+      <p><%=Employee.find(employee).name%></p>
+    <%end%> 
+</div>
+</div>
+
+<%end%>   
+</div>

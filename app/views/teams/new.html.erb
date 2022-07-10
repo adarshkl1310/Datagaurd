@@ -1,0 +1,40 @@
+<%= render '/layouts/nav' %>
+
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+
+<%= form_with model: @team, local: true do |f| %>
+    
+    <div class="field">
+    <%= f.label "Add Leader ="%>
+   <%#= f.select :employee_id, Employee.where(is_leader: true).pluck(:name)%>
+<%= f.collection_select :employee_id, Employee.where(is_leader: true),:id,:name, include_blank: true %>
+    </div></br>
+
+    <div class="field">
+    <%= f.label "Notify A Team About Dinner ="%>
+    <%= f.text_field :name%>
+    </div></br>
+
+    <div class="field">
+    <%= f.label "Add Restaurant Name ="%>
+    <%= f.text_field :restaurant_name%>
+    </div></br>
+
+    <div class="field">
+    <%= f.label "Add users to team ="%><br />
+    <%= f.collection_check_boxes :team_employees, Employee.where(is_leader: false), :id, :name do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+    <% end %>
+    </div></br>
+
+    <div class="button">
+    <%= f.button :submit,class: "btn btn-primary"%>
+    </div>
+
+<% end %>
+</div> 
+</div>
